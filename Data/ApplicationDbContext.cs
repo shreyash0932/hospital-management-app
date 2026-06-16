@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using HospitalManagement.Models;
+﻿using HospitalManagement.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace HospitalManagement.Data
 {

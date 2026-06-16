@@ -137,3 +137,9 @@ C:\dotnet\HospitalManagement\HospitalManagement\obj\Debug\net8.0\refint\Hospital
 C:\dotnet\HospitalManagement\HospitalManagement\obj\Debug\net8.0\HospitalManagement.pdb
 C:\dotnet\HospitalManagement\HospitalManagement\obj\Debug\net8.0\HospitalManagement.genruntimeconfig.cache
 C:\dotnet\HospitalManagement\HospitalManagement\obj\Debug\net8.0\ref\HospitalManagement.dll
+C:\dotnet\HospitalManagement\HospitalManagement\obj\Debug\net8.0\HospitalManagement.sourcelink.json
+C:\dotnet\HospitalManagement\HospitalManagement\bin\Debug\net8.0\Microsoft.OpenApi.dll
+C:\dotnet\HospitalManagement\HospitalManagement\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\dotnet\HospitalManagement\HospitalManagement\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\dotnet\HospitalManagement\HospitalManagement\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\dotnet\HospitalManagement\HospitalManagement\obj\Debug\net8.0\HospitalManagement.MvcApplicationPartsAssemblyInfo.cs

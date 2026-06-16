@@ -1,10 +1,12 @@
-﻿
-using HospitalManagement.Data;
+﻿using HospitalManagement.Data;
 using HospitalManagement.Models;
 using Microsoft.AspNetCore.Mvc;
+
 namespace HospitalManagement.Controllers
 {
-    public class PatientController : Controller
+    [ApiController]
+    [Route("api/[controller]")]
+    public class PatientController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
@@ -13,81 +15,70 @@ namespace HospitalManagement.Controllers
             _context = context;
         }
 
-        // Display
-        public IActionResult Index()
+        // GET: api/patient
+        [HttpGet]
+        public IActionResult GetAllPatients()
         {
-            var data = _context.Patients.ToList();
-            return View(data);
+            var patients = _context.Patients.ToList();
+            return Ok(patients);
         }
 
-        // Create GET
-        public IActionResult Create()
+        // GET: api/patient/1
+        [HttpGet("{id}")]
+        public IActionResult GetPatientById(int id)
         {
-            return View();
+            var patient = _context.Patients.Find(id);
+
+            if (patient == null)
+                return NotFound("Patient not found.");
+
+            return Ok(patient);
         }
 
-        // Create POST
+        // POST: api/patient
         [HttpPost]
-        public IActionResult Create(Patient patient)
+        public IActionResult CreatePatient([FromBody] Patient patient)
         {
             _context.Patients.Add(patient);
             _context.SaveChanges();
-            _context.Update(patient);
+
+            return Ok(patient);
+        }
+
+        // PUT: api/patient/1
+        [HttpPut("{id}")]
+        public IActionResult UpdatePatient(int id, [FromBody] Patient patient)
+        {
+            var existingPatient = _context.Patients.Find(id);
+
+            if (existingPatient == null)
+                return NotFound("Patient not found.");
+
+            existingPatient.Name = patient.Name;
+            existingPatient.Age = patient.Age;
+            existingPatient.Gender = patient.Gender;
+            existingPatient.Disease = patient.Disease;
+            existingPatient.DoctorName = patient.DoctorName;
+            existingPatient.City = patient.City;
+
             _context.SaveChanges();
 
-
-            return RedirectToAction("Index");
+            return Ok(existingPatient);
         }
-      
-        public IActionResult Edit(int id)
+
+        // DELETE: api/patient/1
+        [HttpDelete("{id}")]
+        public IActionResult DeletePatient(int id)
         {
             var patient = _context.Patients.Find(id);
 
             if (patient == null)
-            {
-                return NotFound();
-            }
-
-            return View(patient);
-
-
-        }
-
-        [HttpPost]
-        public IActionResult Edit(Patient patient)
-        {
-            _context.Patients.Update(patient);
-            _context.SaveChanges();
-
-            TempData["Success"] = "Patient updated successfully.";
-            return RedirectToAction("Index");
-        }
-        public IActionResult Remove(int id)
-        {
-            var patient = _context.Patients.Find(id);
-
-            if (patient == null)
-            {
-                TempData["Error"] = "Patient not found.";
-                return RedirectToAction("Index");
-            }
+                return NotFound("Patient not found.");
 
             _context.Patients.Remove(patient);
             _context.SaveChanges();
 
-            TempData["Success"] = "Patient deleted successfully.";
-            return RedirectToAction("Index");
-        }
-        public IActionResult Details(int id)
-        {
-            var patient = _context.Patients.Find(id);
-
-            if (patient == null)
-            {
-                return NotFound();
-            }
-
-            return View(patient);
+            return Ok("Patient deleted successfully.");
         }
     }
 }
