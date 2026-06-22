@@ -1,9 +1,11 @@
 ﻿using HospitalManagement.Data;
 using HospitalManagement.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HospitalManagement.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class PatientController : ControllerBase
@@ -15,7 +17,7 @@ namespace HospitalManagement.Controllers
             _context = context;
         }
 
-        // GET: api/patient
+       
         [HttpGet]
         public IActionResult GetAllPatients()
         {
@@ -23,7 +25,6 @@ namespace HospitalManagement.Controllers
             return Ok(patients);
         }
 
-        // GET: api/patient/1
         [HttpGet("{id}")]
         public IActionResult GetPatientById(int id)
         {
@@ -34,8 +35,29 @@ namespace HospitalManagement.Controllers
 
             return Ok(patient);
         }
+        [HttpGet("age/{age}")]
+        public IActionResult GetPatientByAge(int age)
+        {
+            var patients = _context.Patients.Where(p => p.Age == age).ToList();
 
-        // POST: api/patient
+            if (!patients.Any())
+                return NotFound("No patients found");
+
+            return Ok(patients);
+        }
+        [HttpGet("name/{name}")]
+        public IActionResult GetPatientByName(string name)
+        {
+            var patient = _context.Patients.Where(p => p.Name == name) .ToList();
+            if (!patient.Any())
+                return NotFound("No records found");
+            return Ok(patient);
+
+        }
+
+
+
+
         [HttpPost]
         public IActionResult CreatePatient([FromBody] Patient patient)
         {
@@ -45,7 +67,7 @@ namespace HospitalManagement.Controllers
             return Ok(patient);
         }
 
-        // PUT: api/patient/1
+        
         [HttpPut("{id}")]
         public IActionResult UpdatePatient(int id, [FromBody] Patient patient)
         {
@@ -53,6 +75,7 @@ namespace HospitalManagement.Controllers
 
             if (existingPatient == null)
                 return NotFound("Patient not found.");
+
 
             existingPatient.Name = patient.Name;
             existingPatient.Age = patient.Age;
@@ -66,7 +89,7 @@ namespace HospitalManagement.Controllers
             return Ok(existingPatient);
         }
 
-        // DELETE: api/patient/1
+        
         [HttpDelete("{id}")]
         public IActionResult DeletePatient(int id)
         {

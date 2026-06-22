@@ -143,3 +143,7 @@ C:\dotnet\HospitalManagement\HospitalManagement\bin\Debug\net8.0\Swashbuckle.Asp
 C:\dotnet\HospitalManagement\HospitalManagement\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\dotnet\HospitalManagement\HospitalManagement\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\dotnet\HospitalManagement\HospitalManagement\obj\Debug\net8.0\HospitalManagement.MvcApplicationPartsAssemblyInfo.cs
+C:\dotnet\HospitalManagement\HospitalManagement\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\dotnet\HospitalManagement\HospitalManagement\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.InMemory.dll
+C:\dotnet\HospitalManagement\HospitalManagement\bin\Debug\net8.0\Microsoft.Bcl.Cryptography.dll
+C:\dotnet\HospitalManagement\HospitalManagement\bin\Debug\net8.0\System.Formats.Asn1.dll
